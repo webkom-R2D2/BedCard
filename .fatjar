@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sun Nov 04 20:18:17 CET 2007
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=BedCard.jar
+manifest.mergeall=true
+manifest.mainclass=no.abakus.bedcard.gui.BedCard
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
