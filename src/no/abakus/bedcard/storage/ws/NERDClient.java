@@ -46,6 +46,8 @@ public class NERDClient implements AbakusNoBedCardService {
                 put(RegistrationStatus.SECONDARY_QUEUE,"4");
             }
         };
+        
+    private static Map<Long, Type> TYPE_MAP = new HashMap<Long, Type>();
 	
 	@Override
 	public boolean connect(String username, String password)
@@ -125,6 +127,7 @@ public class NERDClient implements AbakusNoBedCardService {
 		}
 		event.setId(Long.parseLong(eventFields.get("id")));
 		event.setTitle(eventFields.get("name"));
+		event.setType(TYPE_MAP.get(Long.parseLong(eventFields.get("type"))));
 		event.setCapacity(Integer.parseInt(eventFields.get("capacity")));
 		event.setDescription(eventFields.get("description"));
 		event.setLocation(eventFields.get("location"));
@@ -170,9 +173,12 @@ public class NERDClient implements AbakusNoBedCardService {
 		String response = "";
 		
 		List<EventDto> events = new ArrayList<EventDto>();
+		if (type == null){
+			return events;
+		}
 		try {
 			HttpURLConnection conn = 
-				getConnection("event/events/"+(from.getYear()+1900)+"-"+(from.getMonth()+1)+ "-" + from.getDate() 
+				getConnection("event/events/"+type.getName()+"/"+(from.getYear()+1900)+"-"+(from.getMonth()+1)+ "-" + from.getDate() 
 					+"/" +(to.getYear()+1900)+"-"+(to.getMonth()+1)+ "-" + to.getDate() + "/?format=xml");
 			
 			conn.setRequestMethod("GET");
@@ -365,11 +371,11 @@ public class NERDClient implements AbakusNoBedCardService {
 			
 			ArrayList<Type> t = new ArrayList<Type>();
 			
-			Long i = 0L;
-			for (Element type : types)
-				t.add(new Type(i, type.getValue(), type.getValue()));
-				i++;
-			
+			for (Element type : types){
+				Type temp = new Type(Long.parseLong(type.getChild("id").getValue()), type.getChild("name").getValue(), type.getChild("name").getValue()); 
+				t.add(temp);
+				TYPE_MAP.put(temp.getId(), temp);
+			}
 			return t;
 		}
 		catch (IOException e) {

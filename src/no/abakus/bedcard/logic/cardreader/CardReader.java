@@ -86,7 +86,6 @@ public abstract class CardReader implements SerialPortEventListener {
     
     public void serialEvent(SerialPortEvent event) {
     	log.debug("serialEvent():"+ Calendar.getInstance().getTime());
-    	System.out.println("HEIAAAA");
         String c = "";
         byte[] b = new byte[1];
         try {
