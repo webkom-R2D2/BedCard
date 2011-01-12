@@ -51,7 +51,7 @@ public class BedCard extends JFrame implements ActionListener, LogicListener
 	private ContentType current;
 	
 	/**
-	 * Vil opprette et vindu som f�lger oppl�sningen funnet som desktop-oppl�sning.
+	 * Vil opprette et vindu som følger oppløsningen funnet som desktop-oppløsning.
 	 */
 	public BedCard(){
 		current = ContentType.konfigurering;
@@ -59,8 +59,8 @@ public class BedCard extends JFrame implements ActionListener, LogicListener
 		sound = new Sound();
 		logic = new LogicHandler();
 		logic.setLogicListener(this);
-		log.debug("Starting BedCard");
-		setTitle("BedCard - Fordi webkom eier Abakus");
+		log.debug("Starting AbaCard");
+		setTitle("AbaCard - Fordi webkom eier Abakus");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		desktop = new JDesktopPane();
 		setContentPane(desktop);
@@ -189,7 +189,7 @@ public class BedCard extends JFrame implements ActionListener, LogicListener
 		} else if(current==ContentType.registrering){
 			contentPanel.getRegistreringVenteliste().setHighlightedUsername(false);
 		} else {
-			log.error("returnUnknownUsernameToCard kalt uten at vi er p� registrering eller registreringVenteliste");
+			log.error("returnUnknownUsernameToCard kalt uten at vi er på registrering eller registreringVenteliste");
 			contentPanel.getRegistreringVenteliste().setHighlightedUsername(false);
 			contentPanel.getRegistrering().setHighlightedUsername(false);
 		}
