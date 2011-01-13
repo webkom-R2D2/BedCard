@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -75,7 +76,7 @@ public class NERDClient implements AbakusNoBedCardService {
 		}
 	}
 
-	private UserDto parseUser(Element djangoUser){
+	private UserDto parseUser(Element djangoUser, boolean hasAccess){
 		
 		UserDto user = new UserDto();
 		
@@ -99,7 +100,7 @@ public class NERDClient implements AbakusNoBedCardService {
 			user.setRfidCardNumber(Long.parseLong(userFields.get("rfid_card_number")));
 		}
 			
-		user.setHasAccess(true);
+		user.setHasAccess(hasAccess);
 		
 		return user;
 	}
@@ -242,7 +243,7 @@ public class NERDClient implements AbakusNoBedCardService {
 		}
 		
 		for (Element djangoUser : djangoUsers) {
-			UserDto user = parseUser(djangoUser);
+			UserDto user = parseUser(djangoUser, true);
 			users.add(user);
 		}
 		
@@ -253,10 +254,14 @@ public class NERDClient implements AbakusNoBedCardService {
 	public List<UserDto> getAllActiveStudents(Long eventId) throws AbakusNoException {
 		String response = "";
 		
-		List<UserDto> users = new ArrayList<UserDto>();
+		//Using map so that first enter all users, then overwrite those that have access
+		HashMap<Long, UserDto> userMap = new HashMap<Long, UserDto>();
+		
+		
+		//First get all users
 		try {
 			HttpURLConnection conn = 
-				getConnection("event/"+ eventId + "/permitted_users/?format=xml");
+				getConnection("event/"+ eventId + "/permitted_users/?format=xml&permitted=false");
 			
 			conn.setRequestMethod("GET");
 			
@@ -278,13 +283,47 @@ public class NERDClient implements AbakusNoBedCardService {
 		}
 		
 		for (Element djangoUser : djangoUsers) {
-			UserDto user = parseUser(djangoUser);
+			UserDto user = parseUser(djangoUser, false);
+			userMap.put(user.getUserBeanId(), user);
+		}
+		
+		//Then get all users permitted to register for this event
+		try {
+			HttpURLConnection conn = 
+				getConnection("event/"+ eventId + "/permitted_users/?format=xml&permitted=true");
+			
+			conn.setRequestMethod("GET");
+			
+			response = makeRequest(conn);
+		}
+		catch (IOException e) {
+			throw new AbakusNoException();
+		}
+		
+		try {
+			SAXBuilder saxBuilder = new SAXBuilder();
+			Document jdomDocument = saxBuilder.build(new StringReader(response));
+			djangoUsers = jdomDocument.getRootElement().getChildren();
+		} catch (JDOMException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		for (Element djangoUser : djangoUsers) {
+			UserDto user = parseUser(djangoUser, false);
+			userMap.put(user.getUserBeanId(), user);
+		}
+		
+		List<UserDto> users = new ArrayList<UserDto>();
+
+		Collection<UserDto> mapVals = userMap.values();
+		
+		for (UserDto user : mapVals) {
 			users.add(user);
 		}
 		
 		return users;
-		
-		
 	}
 
 	@Override
