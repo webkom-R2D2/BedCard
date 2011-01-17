@@ -68,7 +68,6 @@ public class NERDClient implements AbakusNoBedCardService {
 			int pos = c.indexOf(";");
 			cookie = c.substring(0, pos);
 			response = response.trim();
-			System.out.println("OK".equals(response));
 			return "OK".equals(response);
 		}
 		catch (IOException e) {
@@ -330,12 +329,10 @@ public class NERDClient implements AbakusNoBedCardService {
 	public void setRegistrantPresence(Long eventId, Boolean present,
 			List<Long> registrants) throws AbakusNoException {
 		
-		System.out.println("Called with presence:" + present);
 		String data = "";
 		
 		for (Long registrant : registrants) {
 			data += registrant + ",";
-			System.out.println(registrant);
 		}
 		if ( registrants.size() > 0){
 			data = data.substring(0, data.length()-1); //Ugly as hell, to remove the last ","		
@@ -343,7 +340,7 @@ public class NERDClient implements AbakusNoBedCardService {
 		
 		int presence = 0;
 		data = "users=" + data;
-		//TODO: What to do if presence is null?
+		//TODO: What to do if presence is null, it's from users that still are in the waiting list or something
 		if (present == null){
 			presence = 0;
 		}else{
@@ -353,7 +350,6 @@ public class NERDClient implements AbakusNoBedCardService {
 			HttpURLConnection conn = getConnection("event/"+eventId+ "/register_users/" + presence+"/");
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			
 			conn.setRequestProperty("Content-Length", Integer.toString(data.getBytes().length));
 			
 			String response = makeRequest(conn, data);
