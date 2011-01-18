@@ -879,7 +879,7 @@ public class Konfigurering extends ContentPanelMother {
 			if(arg0.getSource() == lesereReconnect){
 				logic.reconnectReaders();
 				refreshLesere();
-				bedcard.popupMessage("Kobler opp lesere", "Pr�ver � koble opp alle leserene");
+				bedcard.popupMessage("Kobler opp lesere", "Prøver å koble opp alle leserene");
 			} else if(arg0.getSource() == leserReconnect){
 				connectReader();
 			}
@@ -963,16 +963,16 @@ public class Konfigurering extends ContentPanelMother {
 			} else if(arg0.getSource() == abakusNoLagre){
 				log.debug("Lagre event til abakusNo og fil");
 				if(sjekkOmSikker("Dette vil lagre alle endringer til Abakus.no og fil, er du sikker?")){
-					bedcard.haltMessage("Lagrer", "Lagrer n� til abakus.no og til fil");
+					bedcard.haltMessage("Lagrer", "Lagrer nå til abakus.no og til fil");
 					new Thread(new LagreThread(bedcard, logic)).start();
 				}
 			} else if(arg0.getSource() == filLagre){
 				log.debug("Lagre event til fil");
 				if(sjekkOmSikker("Dette vil lagre alle endringer til fil, er du sikker?"))
 					if(logic.saveToFile()){
-						bedcard.popupMessage("Lagret", "Eventen er n� lagret til fil");
+						bedcard.popupMessage("Lagret", "Eventen er nå lagret til fil");
 					} else {
-						bedcard.popupMessage("Feil", "Klarte ikke � lagre all info til fil");
+						bedcard.popupMessage("Feil", "Klarte ikke å lagre all info til fil");
 					}
 				refreshFiler();
 				refreshFilTyper();

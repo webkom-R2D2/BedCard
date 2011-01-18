@@ -70,7 +70,7 @@ public class LogoButton extends JButton {
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON );
    	 	g2d.setFont(new Font("Tahoma", Font.BOLD, 10));
 		
-   	 	String tekst = "Trykk for å endre";
+   	 	String tekst = "Trykk for Ã¥ endre";
    	 	FontMetrics fm = g2d.getFontMetrics();
    	 	int xPos = (width - g2d.getFontMetrics().stringWidth(tekst))/2;
    	 	int yPos = height-fm.getDescent()-5;
@@ -88,7 +88,7 @@ public class LogoButton extends JButton {
 			//Skaler bildet;
 			log.debug("w: " + width + " h: " + height);
 			logo = ImageScaler.scaleImageToFit(img, width, height-30);
-			log.debug("Logo er nå satt til eventen sitt bilde");
+			log.debug("Logo er nÃ¥ satt til eventen sitt bilde");
 		} else {
 			logo = null;
 		}

@@ -206,7 +206,7 @@ public class RegistreringVenteliste extends ContentPanelMother {
 				}
 			}
 		} else {
-			textVelkommenBruker.setText("Ventelisten er nå tom");
+			textVelkommenBruker.setText("Ventelisten er nÃ¥ tom");
 			textVelkommenBrukernavn.setText("");
 			letIn.setEnabled(false);
 			dontLetIn.setEnabled(false);

@@ -98,7 +98,7 @@ public class NERDClient implements AbakusNoBedCardService {
 		}else{
 			user.setRfidCardNumber(Long.parseLong(userFields.get("rfid_card_number")));
 		}
-			
+		
 		user.setHasAccess(hasAccess);
 		
 		return user;
@@ -310,7 +310,7 @@ public class NERDClient implements AbakusNoBedCardService {
 		}
 		
 		for (Element djangoUser : djangoUsers) {
-			UserDto user = parseUser(djangoUser, false);
+			UserDto user = parseUser(djangoUser, true);
 			userMap.put(user.getUserBeanId(), user);
 		}
 		

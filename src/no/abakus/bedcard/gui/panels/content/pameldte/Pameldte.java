@@ -50,7 +50,7 @@ public class Pameldte extends ContentPanelMother{
 	
 	public Pameldte(BedCard bedcard, Logic logic, ContentPanel contentPanel) {
 		super(bedcard, logic, contentPanel);
-		BoxPanel boxPanel = new BoxPanel(bedcard, "Påmeldte", 700, bedcard.getDrawHeight()-BedCard.BottomStatusPanelHeight-BedCard.MenuPanelHeight);
+		BoxPanel boxPanel = new BoxPanel(bedcard, "PÃ¥meldte", 700, bedcard.getDrawHeight()-BedCard.BottomStatusPanelHeight-BedCard.MenuPanelHeight);
 		boxPanel.getInternPanel().setLayout(new BorderLayout());
 		add(boxPanel);
 		admitted = new StudentEntryFilterList();
@@ -64,7 +64,7 @@ public class Pameldte extends ContentPanelMother{
 		
 		//Lag bunnmeny
 		Font knappFont = new Font("Tahoma", Font.PLAIN, 12);
-		oppmote = new JButton("Oppmøte");
+		oppmote = new JButton("OppmÃ¸te");
 		oppmote.addActionListener(new FilterActionListener());
 		oppmote.setBackground(boxPanel.getBottomPanel().getBackground());
 		oppmote.setFont(knappFont);
@@ -96,7 +96,7 @@ public class Pameldte extends ContentPanelMother{
 		top.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 0));
 		
 		
-		//Legger på filterene
+		//Legger pï¿½ filterene
 		JPanel filter1 = new JPanel();
 		filter1.setBackground(boxPanel.getInternPanel().getBackground());
 		filter1.add(new JLabel("Brukernavn: "));
@@ -117,7 +117,7 @@ public class Pameldte extends ContentPanelMother{
 
 		JPanel filter4 = new JPanel();
 		filter4.setBackground(boxPanel.getInternPanel().getBackground());
-		filter4.add(new JLabel("Kun ikke oppmøtte: "));
+		filter4.add(new JLabel("Kun ikke oppmÃ¸tte: "));
 		ikkeSluppetInn = new JRadioButton();
 		ikkeSluppetInn.setBackground(boxPanel.getInternPanel().getBackground());
 		ikkeSluppetInn.setSelected(admitted.isShowOnlyNotAdmitted());
@@ -139,7 +139,7 @@ public class Pameldte extends ContentPanelMother{
 		resetFilter();
 	}
 	public void refreshData(){
-		log.debug("Antall på påmeldingslista: " + logic.getListOfParticipants().size());
+		log.debug("Antall pÃ¥ pÃ¥meldingslista: " + logic.getListOfParticipants().size());
 		admitted.setSelection(logic.getListOfParticipants());
 		entryList.setListData(admitted.getFilteredEntries().toArray());
 		repaint();
@@ -189,7 +189,7 @@ public class Pameldte extends ContentPanelMother{
 	
 	private final class FilterActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {	
-			log.debug("Action performed i påmeldte: " + arg0.getActionCommand());
+			log.debug("Action performed i pÃ¥meldte: " + arg0.getActionCommand());
 			if(arg0.getSource() == oppmote){
 				for(int i : entryList.getSelectedIndices()){
 					StudentEntry entry = admitted.getFilteredEntries().get(i);

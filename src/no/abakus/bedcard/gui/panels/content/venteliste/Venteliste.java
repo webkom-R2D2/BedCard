@@ -64,7 +64,7 @@ public class Venteliste extends ContentPanelMother{
 		//Lag bunnmeny
 		Font knappFont = new Font("Tahoma", Font.PLAIN, 12);
 
-		oppmote = new JButton("Oppmøte");
+		oppmote = new JButton("OppmÃ¸te");
 		oppmote.addActionListener(new FilterActionListener());
 		oppmote.setBackground(boxPanel.getBottomPanel().getBackground());
 		oppmote.setFont(knappFont);
@@ -120,7 +120,7 @@ public class Venteliste extends ContentPanelMother{
 
 		JPanel filter4 = new JPanel();
 		filter4.setBackground(boxPanel.getInternPanel().getBackground());
-		filter4.add(new JLabel("Kun ikke oppmøtte: "));
+		filter4.add(new JLabel("Kun ikke oppmÃ¸tte: "));
 		ikkeSluppetInn = new JRadioButton();
 		ikkeSluppetInn.setBackground(boxPanel.getInternPanel().getBackground());
 		ikkeSluppetInn.setSelected(venteliste.isShowOnlyNotAdmitted());
@@ -140,7 +140,7 @@ public class Venteliste extends ContentPanelMother{
 		resetFilter();
 	}
 	public void refreshData(){
-		log.debug("Antall på ventelista: " + logic.getListOfParticipants().size());
+		log.debug("Antall pÃ¥ ventelista: " + logic.getListOfParticipants().size());
 		venteliste.setSelection(logic.getWaitingList());
 		entryList.setListData(venteliste.getFilteredEntries().toArray());
 		repaint();
@@ -188,7 +188,7 @@ public class Venteliste extends ContentPanelMother{
 	
 	private final class FilterActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {	
-			log.debug("Action performed i påmeldte: " + arg0.getActionCommand());
+			log.debug("Action performed i pÃ¥meldte: " + arg0.getActionCommand());
 			if(arg0.getSource() == oppmote){
 				for(int i : entryList.getSelectedIndices()){
 					StudentEntry entry = venteliste.getFilteredEntries().get(i);

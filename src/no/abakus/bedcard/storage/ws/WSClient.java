@@ -152,7 +152,7 @@ public class WSClient implements AbakusNoBedCardService{
 	@Override
 	public void setRegistrantPresence(Long eventId, Boolean present,
 			List<Long> registrants) throws AbakusNoException{
-		log.debug("Setter oppm�te p� bruker");
+		log.debug("Setter oppmøte på bruker");
 		try {
 			service.setRegistrantPresence(eventId, present, registrants);
 		} catch (XFireRuntimeException e) {

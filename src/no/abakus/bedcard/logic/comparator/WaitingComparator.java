@@ -28,9 +28,9 @@ public class WaitingComparator implements Comparator<StudentEntry> {
 		
 		/*	
 		 * Score:
-		 * 1 - Studenten har egentlig ikke lov til å slippe inn
-		 * 2 - Studenten har lov til å slippe inn
-		 * 3 - Studenten har lov til å slippe inn og har satt seg på venteliste på nett
+		 * 1 - Studenten har egentlig ikke lov til ï¿½ slippe inn
+		 * 2 - Studenten har lov til ï¿½ slippe inn
+		 * 3 - Studenten har lov til ï¿½ slippe inn og har satt seg pï¿½ venteliste pï¿½ nett
 		 * 4 - Studenten er VIP
 		 */
 		
@@ -43,10 +43,10 @@ public class WaitingComparator implements Comparator<StudentEntry> {
 			score0 = 4;
 		}
 		else if(logic.getEvent().getNetWaitingList().contains(stud0)){
-			log.debug("Er på nettventelisten");
+			log.debug("Er pÃ¥ nettventelisten");
 			score0 = 3;
 		}
-		else { // møtt opp og meldt seg på ventelista
+		else { // mï¿½tt opp og meldt seg pï¿½ ventelista
 			score0 = 2;
 		}
  		
@@ -58,21 +58,21 @@ public class WaitingComparator implements Comparator<StudentEntry> {
 			score1 = 4;
 		}
 		else if(logic.getEvent().getNetWaitingList().contains(stud1)){
-			log.debug("Er på nettventelisten");
+			log.debug("Er pÃ¥ nettventelisten");
 			score1 = 3;
 		}
-		else { // møtt opp og meldt seg på ventelista
+		else { // mï¿½tt opp og meldt seg pï¿½ ventelista
 			score1 = 2;
 		}
 		
-		//Sjekker på dato eller venteliste alt ettersom hvis de er like.
+		//Sjekker pï¿½ dato eller venteliste alt ettersom hvis de er like.
 		if(score1==score0){
 			//De er like		
 			if(score1 == 3){
-				//Sorter på plass i ventelista
+				//Sorter pï¿½ plass i ventelista
 				return logic.getEvent().getNetWaitingList().indexOf(stud0)-logic.getEvent().getNetWaitingList().indexOf(stud1);
 			} else {
-				//Sorter på dato de var lagt til
+				//Sorter pï¿½ dato de var lagt til
 				return arg0.getEnteredTime().compareTo(arg1.getEnteredTime());				
 			}
 		}

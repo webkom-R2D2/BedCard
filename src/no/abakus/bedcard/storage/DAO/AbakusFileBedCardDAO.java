@@ -116,20 +116,20 @@ public class AbakusFileBedCardDAO implements BedcardDAO {
 		//Henter ut studenter i prim�rventek�
 		for (UserDto user : client.getRegistrants(eventId, RegistrationStatus.PRIMARY_QUEUE)) {
 			Student student = allStudentsList.get(user.getUsername());
-			log.debug("Legger til i prim�rventek�: " + user);
+			log.debug("Legger til i primærventekø: " + user);
 			log.debug("Hentet fra allUsers (" + user.getUsername() + ") - " + student);
 			if(student == null)
-				throw new AbakusNoException("En som var p� venteliste finnes ikke blandt aktive studenter");
+				throw new AbakusNoException("En som var på venteliste finnes ikke blandt aktive studenter");
 			netWaitingList.add(student);
 		}
 		
 		//Henter ut studenter i sekund�rventek�
 		for (UserDto user : client.getRegistrants(eventId, RegistrationStatus.SECONDARY_QUEUE)) {
 			Student student = allStudentsList.get(user.getUsername());
-			log.debug("Legger til i sekund�rventek�: " + user);
+			log.debug("Legger til i sekundærventekø: " + user);
 			log.debug("Hentet fra allUsers (" + user.getUsername() + ") - " + student);
 			if(student == null)
-				throw new AbakusNoException("En som var i sekund�r ventelisten finnes ikke blandt aktive studenter");
+				throw new AbakusNoException("En som var i sekundær ventelisten finnes ikke blandt aktive studenter");
 			netWaitingListBanned.add(student);
 		}
 		
@@ -192,8 +192,8 @@ public class AbakusFileBedCardDAO implements BedcardDAO {
 			client.setRegistrantPresence(saveState.getEvent().getId(), true, okUsers);
 			client.setRegistrantPresence(saveState.getEvent().getId(), false, notOkUsers);
 			client.setRegistrantPresence(saveState.getEvent().getId(), null, notLetInFromWaitingListUsers);
-			log.debug("Satt ok oppm�te p� " + okUsers.size() + " deltakere");
-			log.debug("Satt IKKE ok oppm�te p� " + notOkUsers.size() + " deltakere");
+			log.debug("Satt ok oppmøte på " + okUsers.size() + " deltakere");
+			log.debug("Satt IKKE ok oppmøte på " + notOkUsers.size() + " deltakere");
 			log.debug("Lagrer ny info om " + saveState.getAlteredStudents().values().size() + " brukere");
 			//Lagre alle endringer gjort til brukere
 			for (Student student : saveState.getAlteredStudents().values()) {

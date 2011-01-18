@@ -16,7 +16,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author Stian Sønderland
+ * @author Stian Sï¿½nderland
  */
 
 public class UidRFIDReader extends CardReader {
@@ -43,7 +43,7 @@ public class UidRFIDReader extends CardReader {
                     connected = true;
                 }
             } else if (message.charAt(0) == 85) {
-            	System.out.println("Lengde på string:" + message.length());
+            	System.out.println("Lengde pÃ¥ string:" + message.length());
             	notifyCardNumber(message.substring(1, 11));
             }
         } catch (Exception e) {

@@ -20,16 +20,16 @@ public class LagreThread implements Runnable {
 		bedcard.stopHaltMessage();
 		switch(ok){
 		case savedToBoth:
-			bedcard.popupMessage("Lagret", "Eventen er nå lagret til abakus.no og til fil");
+			bedcard.popupMessage("Lagret", "Eventen er nÃ¥ lagret til abakus.no og til fil");
 			break;
 		case savedToAbakusOnly:
-			bedcard.errorMessage("Feil", "Klarte ikke å lagre til fil, kontakt Bedkom WEB");
+			bedcard.errorMessage("Feil", "Klarte ikke Ã¥ lagre til fil, kontakt Bedkom WEB");
 			break;
 		case savedToFileOnly:
-			bedcard.errorMessage("Feil", "Klarte ikke å lagre til abakus.no, prøv å logg på igjen");
+			bedcard.errorMessage("Feil", "Klarte ikke Ã¥ lagre til abakus.no, prÃ¸v Ã¥ logg pÃ¥ igjen");
 			break;
 		case savedToNone:
-			bedcard.errorMessage("Feil", "Klarte ikke å lagre til noe i det hele tatt, kontakt Bedkom WEB");
+			bedcard.errorMessage("Feil", "Klarte ikke Ã¥ lagre til noe i det hele tatt, kontakt Bedkom WEB");
 			break;
 		}
 	}

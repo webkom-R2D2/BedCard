@@ -169,14 +169,14 @@ public abstract class CardReader implements SerialPortEventListener {
 	                    if (!cpi.isCurrentlyOwned()) {
 	                        if (setPort(cpi)) {
 	                            portname = cpi.getName();                     
-	                            log.debug(getName() + " pr�ver � koble til " + portname + "...");
+	                            log.debug(getName() + " prøver å koble til " + portname + "...");
 	                            sendMessage(getNameChar);
 	                            try {
 									Thread.sleep(400);
 								} catch (InterruptedException e1) {
 								}
 	                            if (!connected) {
-	                            	log.debug(getName() + " svarte ikke p� " + portname + "... tid:"+ Calendar.getInstance().getTime());
+	                            	log.debug(getName() + " svarte ikke på " + portname + "... tid:"+ Calendar.getInstance().getTime());
 	                                sPort.close();
 	                            }
 	                        }
@@ -185,7 +185,7 @@ public abstract class CardReader implements SerialPortEventListener {
 	            }
             }
         if (connected) {
-            log.debug("---: " + this.getName() + " koblet til p� " + portname);
+            log.debug("---: " + this.getName() + " koblet til på " + portname);
             return true;
         } else {
         	log.debug("Reader: " + readerName + ": could not connect");

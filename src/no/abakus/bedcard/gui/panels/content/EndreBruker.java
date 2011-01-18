@@ -74,7 +74,7 @@ public class EndreBruker extends ContentPanelMother {
 		boxPanel.getBottomPanel().add(tilbakestillBtn);
 		boxPanel.getBottomPanel().setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 12));		
 			
-		//Legg på finn bruker (topp-feltet)
+		//Legg pï¿½ finn bruker (topp-feltet)
 		JPanel top = new JPanel();
 		info = new JLabel(" ");
 		info.setBackground(boxPanel.getInternPanel().getBackground());
@@ -106,7 +106,7 @@ public class EndreBruker extends ContentPanelMother {
 		
 		midPanel.add(toppen, BorderLayout.NORTH);
 		
-		//Legg på brukerpanelet som viser studenten.
+		//Legg pï¿½ brukerpanelet som viser studenten.
 		JPanel studentPanel = new JPanel();
 		SpringLayout layout = new SpringLayout();
         studentPanel.setLayout(layout);
@@ -236,7 +236,7 @@ public class EndreBruker extends ContentPanelMother {
 						brukernavn.setText("");
 					}
 				} else {
-					info.setText("Hent bruker først");
+					info.setText("Hent bruker fÃ¸rst");
 				}
 			}
 		}
