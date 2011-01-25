@@ -30,8 +30,8 @@ import org.jdom.input.SAXBuilder;
 
 public class NERDClient implements AbakusNoBedCardService {
 
-	// public final static String baseUrl = "http://nerddev.abakus.no/";
-	public final static String baseUrl = "http://localhost:8000/";
+	public final static String baseUrl = "http://nerdtest.abakus.no/";
+	//public final static String baseUrl = "http://localhost:8000/";
 	
 	private String cookie = ""; 
 	
